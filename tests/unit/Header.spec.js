@@ -13,5 +13,5 @@ describe('Header', () => {
         let today = new Date();
         let date = today.getDate() < 10 ?  `0${today.getDate()}` : today.getDate();
         expect(wrapper.html()).toContain(date)
-    })
+    });
 });
