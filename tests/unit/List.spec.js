@@ -17,7 +17,7 @@ describe('List', () => {
         },
         {id: 2,
             title: 'Foo2',
-            done: false
+            done: true
         }];
     const wrapper2 = mount(List, {
         propsData: {
@@ -31,7 +31,7 @@ describe('List', () => {
 
 
     it('if marked as done', () => {
-        const title = wrapper2.props().list[0].title;
+        let title = wrapper2.props().list[0].title;
         let done = wrapper2.props().list[0].done;
         wrapper2.find('.list-item:first-of-type span').trigger('click');
         for (let i = 0; i < wrapper2.props().list.length; i++) {
@@ -40,6 +40,19 @@ describe('List', () => {
                 break;
             }
         }
-        expect(done).toEqual(true)
+        expect(done).toEqual(true);
+    });
+
+    it('unmark an item', function () {
+        let title = wrapper2.props().list[0].title;
+        let done = wrapper2.props().list[0].done;
+        wrapper2.find('.list-item:first-of-type span').trigger('click');
+        for (let i = 0; i < wrapper2.props().list.length; i++) {
+            if (wrapper2.props().list[i].title === title) {
+                done = wrapper2.props().list[i].done;
+                break;
+            }
+        }
+        expect(done).toEqual(false);
     });
 });
